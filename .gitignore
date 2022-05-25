@@ -1,6 +1,7 @@
 /vendor/
 /.vscode/
 .env.local
+.env
 /var/
 /.phpunit.cache/
 /coverage/
