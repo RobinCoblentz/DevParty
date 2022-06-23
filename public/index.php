@@ -13,7 +13,13 @@ if (
 use App\Config\PdoConnection;
 use App\Config\TwigEnvironment;
 use App\DependencyInjection\Container;
+
 use App\Repository\UserRepository;
+use App\Repository\CategoryRepository;
+use App\Repository\LocationRepository;
+// use App\Repository\EventRepository;
+// use App\Repository\ParticipationRepository;
+
 use App\Routing\ArgumentResolver;
 use App\Routing\RouteNotFoundException;
 use App\Routing\Router;
@@ -30,7 +36,14 @@ $dotenv->loadEnv(__DIR__ . '/../.env');
 // PDO
 $pdoConnection = new PdoConnection();
 $pdoConnection->init(); // Connexion à la BDD
-$userRepository = new UserRepository($pdoConnection->getPdoConnection());
+  $userRepository = new UserRepository($pdoConnection->getPdoConnection());
+  $categoryRepository = new CategoryRepository($pdoConnection->getPdoConnection());
+  // $eventRepository = new EventRepository($pdoConnection->getPdoConnection());
+  $locationRepository = new LocationRepository($pdoConnection->getPdoConnection());
+  // $participationRepository = new ParticipationRepository($pdoConnection->getPdoConnection());
+
+ 
+  
 
 // Twig - Vue
 $twigEnvironment = new TwigEnvironment();
@@ -40,7 +53,14 @@ $twig = $twigEnvironment->init();
 $container = new Container();
 $container->set(Environment::class, $twig);
 $container->set(SessionInterface::class, new Session());
-$container->set(UserRepository::class, $userRepository);
+  $container->set(UserRepository::class, $userRepository);
+  $container->set(CategoryRepository::class, $categoryRepository);
+  // $container->set(EventRepository::class, $eventRepository);
+  $container->set(LocationRepository::class, $locationRepository);
+  // $container->set(ParticipationRepository::class, $participationRepository);
+
+
+
 
 // Routage
 $router = new Router($container, new ArgumentResolver());

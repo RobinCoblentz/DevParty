@@ -14,5 +14,9 @@ class TwigEnvironment
       'debug' => $_ENV['APP_ENV'] === 'dev',
       'cache' => __DIR__ . '/../../var/cache',
     ]);
+    
+    $this->twig->addGlobal('_post', $_POST);
+    $this->twig->addGlobal('_get', $_GET);
+    $this->twig->addGlobal('_session', $_SESSION);
   }
 }

@@ -13,15 +13,30 @@ abstract class AbstractRepository
   {
     $this->pdo = $pdo;
   }
-
-  public function find(int $id): array
+  
+  public function find(int $id)
   {
-    $stmt = $this->pdo->prepare("SELECT * FROM " . static::TABLE . " WHERE id=:id");
+    $stmt = $this->pdo->prepare("SELECT * FROM " . static::TABLE . " WHERE ".ucfirst(static::TABLE)."Id=:id");
 
     $stmt->execute(['id' => $id]);
 
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    return ($result !== false) ? $result : [];
+    if  ($result !== false) {
+      return $result ;
+    }
   }
+  
+  public function findall(): array
+  {
+    $stmt = $this->pdo->prepare("SELECT * FROM " . static::TABLE );
+    $stmt->execute();
+
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+     if  ($result !== false) {
+      return $result ;
+    }
+  }
+  
 }

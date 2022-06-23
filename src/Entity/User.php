@@ -2,92 +2,95 @@
 
 namespace App\Entity;
 
-use DateTime;
-
 class User
 {
-  private int $id;
-  private string $name;
-  private string $firstName;
-  private string $username;
-  private string $password;
-  private string $email;
-  private DateTime $birthDate;
+  public int $UserId;
+  public string $Email;
+  public string $Password;
+  public string $FirstName;
+  public string $Name;
+  public int $Role;
+  public bool $Active;
 
-  public function getId(): int
+  public function getUserId(): int
   {
-    return $this->id;
+    return $this->UserId;
   }
 
-  public function getName(): string
+  public function setUserId(int $UserId): self
   {
-    return $this->name;
-  }
-
-  public function setName(string $name): self
-  {
-    $this->name = $name;
-
+    $this->UserId = $UserId;
     return $this;
   }
 
-  public function getFirstName(): string
+  public function getEmail(): string
   {
-    return $this->firstName;
+    return $this->Email;
   }
 
-  public function setFirstName(string $firstName): self
+  public function setEmail(string $Email): self
   {
-    $this->firstName = $firstName;
-
-    return $this;
-  }
-
-  public function getUsername(): string
-  {
-    return $this->username;
-  }
-
-  public function setUsername(string $username): self
-  {
-    $this->username = $username;
+    $this->Email = $Email;
 
     return $this;
   }
 
   public function getPassword(): string
   {
-    return $this->password;
+    return $this->Password;
   }
 
-  public function setPassword(string $password): self
+  public function setPassword(string $Password): self
   {
-    $this->password = $password;
+    $this->Password = $Password;
 
     return $this;
   }
 
-  public function getEmail(): string
+  public function getFirstName(): string
   {
-    return $this->email;
+    return $this->FirstName;
   }
 
-  public function setEmail(string $email): self
+  public function setFirstName(string $FirstName): self
   {
-    $this->email = $email;
+    $this->FirstName = $FirstName;
 
     return $this;
   }
 
-  public function getBirthDate(): DateTime
+  public function getName(): string
   {
-    return $this->birthDate;
+    return $this->Name;
   }
 
-  public function setBirthDate(DateTime $birthDate): self
+  public function setName(string $Name): self
   {
-    $this->birthDate = $birthDate;
+    $this->Name = $Name;
 
+    return $this;
+  }
+
+  public function getRole(): int
+  {
+    return $this->Role;
+  }
+
+  public function setRole(int $Role): self
+  {
+    $this->Role = $Role;
+
+    return $this;
+  }
+
+  public function getActive(): bool
+  {
+    return $this->Active;
+  }
+
+  public function setActive(bool $Active): self
+  {
+    $this->Active = $Active;
     return $this;
   }
 }
